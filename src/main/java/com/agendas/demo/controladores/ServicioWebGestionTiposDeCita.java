@@ -1,6 +1,8 @@
 package com.agendas.demo.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.servicios.FacadeGestionTiposDeCitaInterface;
+import com.agendas.entidadesDTO.TipoCitaDTO;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,30 +27,38 @@ public class ServicioWebGestionTiposDeCita{
 	private FacadeGestionTiposDeCitaInterface service;
 	
 	@PostMapping()
-	public TipoCita createTipoCita(@RequestBody TipoCita tipoCita) {
-		System.out.println("NOMBRE: " + tipoCita.getNombre());
-		System.out.println("DURACION: " + tipoCita.getDuracion());
-		return service.createTipoCita(tipoCita);
+	public ResponseEntity<Object> createTipoCita(@RequestBody TipoCitaDTO tipoCita) {
+		TipoCita tipoCitaNuevo = service.createTipoCita(tipoCita);
+		return new ResponseEntity<Object>(tipoCitaNuevo, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")
-	public TipoCita updateTipoCita(@RequestBody TipoCita tipoCita) {
-		return service.updateTipoCita(tipoCita);
+	public ResponseEntity<Object> updateTipoCita(@RequestBody TipoCitaDTO tipoCita) {
+		TipoCita tipoCitaActualizado = service.updateTipoCita(tipoCita);
+		return new ResponseEntity<Object>(tipoCitaActualizado, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/delete/{idTipoDeCita}")
-	public TipoCita deleteTipoCita(@PathVariable Long idTipoDeCita) {
-		return service.deleteTipoCita(idTipoDeCita);
+	public ResponseEntity<Object> deleteTipoCita(@PathVariable Long idTipoDeCita) {
+		Boolean result = service.deleteTipoCita(idTipoDeCita);
+		if(result) {
+			return new ResponseEntity<Object>(result, HttpStatus.ACCEPTED);
+		}
+		else {
+			return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@GetMapping("/{idTipoCita}")
-	public TipoCita getTipoCita(@PathVariable Long idTipoCita) {
-		return service.getTipoCita(idTipoCita);
+	public ResponseEntity<Object> getTipoCita(@PathVariable Long idTipoCita) {
+		TipoCita tipoCita = service.getTipoCita(idTipoCita);
+		return new ResponseEntity<Object>(tipoCita, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/{inicial}/{cantidad}")
-	public Iterable<TipoCita> getTiposDeCita(@PathVariable int inicial, @PathVariable int cantidad){
-		return service.getTiposDeCita(inicial, cantidad);
+	public ResponseEntity<Object>  getTiposDeCita(@PathVariable int inicial, @PathVariable int cantidad){
+		Iterable<TipoCita> tiposCitas = service.getTiposDeCita(inicial, cantidad);
+		return new ResponseEntity<Object>(tiposCitas, HttpStatus.CREATED);
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoCitaRepository;
+import com.agendas.entidadesDTO.TipoCitaDTO;
 
 @Service
 public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterface{
@@ -18,14 +19,15 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	
 	//Crear tipo de cita
 	@Override
-	public TipoCita createTipoCita(TipoCita tipoCita) {
-		return repository.save(tipoCita);
+	public TipoCita createTipoCita(TipoCitaDTO tipoCita) {
+		TipoCita tipoCitaNuevo = new TipoCita(tipoCita.getNombre(), tipoCita.getDuracion());
+		return repository.save(tipoCitaNuevo);
 	}
 	
 
 	//Actualizar tipo de cita
 	@Override
-	public TipoCita updateTipoCita(TipoCita tipoCita) {
+	public TipoCita updateTipoCita(TipoCitaDTO tipoCita) {
 		
 		Optional<TipoCita> tipoCitaActualizado = repository.findById(tipoCita.getId());
 		
@@ -42,15 +44,15 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 
 	//Eliminar tipo de cita
 	@Override
-	public TipoCita deleteTipoCita(Long idTipoDeCita) {
+	public Boolean deleteTipoCita(Long idTipoDeCita) {
 
 		Optional<TipoCita> tipoCitaEliminar = repository.findById(idTipoDeCita);
 		
 		if(tipoCitaEliminar.isPresent()) {
 			repository.deleteById(idTipoDeCita);
-			return tipoCitaEliminar.get();
+			return true;
 		}
-		return null;
+		return false;
 	}
 
 

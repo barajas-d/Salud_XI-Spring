@@ -12,42 +12,24 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "TIPOS_CITAS")
-public class TipoCita {
-	
+@Table(name = "ESPECIALIDADES")
+public class Especialidad {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "NOMBRE", nullable = false)
+	@Column(name = "NOMBRE")
 	private String nombre;
-	
-	@Column(name = "DURACION", nullable = false)
-	private Long duracion;
 
-	@OneToMany(mappedBy = "tipoCita")
+	@OneToMany(mappedBy = "especialidad")
 	@JsonManagedReference
-	private List<CuotaModeradora> cuotasModeradora;
-
-	@OneToMany(mappedBy = "tipoCita")
-	@JsonManagedReference
-	private List<CitaMedica> citasMedicas;
+	private List<Medico> medicos;
 	
-	@OneToMany(mappedBy = "tipoCita")
+	@OneToMany(mappedBy = "especialidad")
 	@JsonManagedReference
 	private List<TiposCitasAtendidasPorEspecialidad> tiposCitasAtendidasPorEspecialidades;
 	
-	//CONSTRUCTORES
-	public TipoCita() {
-		super();
-	}
-	
-	public TipoCita(String nombre, Long duracion) {
-		super();
-		this.nombre = nombre;
-		this.duracion = duracion;
-	}
-
 	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
@@ -65,28 +47,12 @@ public class TipoCita {
 		this.nombre = nombre;
 	}
 
-	public Long getDuracion() {
-		return duracion;
+	public List<Medico> getMedicos() {
+		return medicos;
 	}
 
-	public void setDuracion(Long duracion) {
-		this.duracion = duracion;
-	}
-
-	public List<CuotaModeradora> getCuotasModeradora() {
-		return cuotasModeradora;
-	}
-
-	public void setCuotasModeradora(List<CuotaModeradora> cuotasModeradora) {
-		this.cuotasModeradora = cuotasModeradora;
-	}
-
-	public List<CitaMedica> getCitasMedicas() {
-		return citasMedicas;
-	}
-
-	public void setCitasMedicas(List<CitaMedica> citasMedicas) {
-		this.citasMedicas = citasMedicas;
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
 	}
 
 	public List<TiposCitasAtendidasPorEspecialidad> getTiposCitasAtendidasPorEspecialidades() {
@@ -97,5 +63,7 @@ public class TipoCita {
 			List<TiposCitasAtendidasPorEspecialidad> tiposCitasAtendidasPorEspecialidades) {
 		this.tiposCitasAtendidasPorEspecialidades = tiposCitasAtendidasPorEspecialidades;
 	}
+	
+	
 	
 }

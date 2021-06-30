@@ -29,6 +29,9 @@ public class TipoContrato {
 	@JsonManagedReference
 	private List<CuotaModeradora> cuotasModeradora;
 	
+	@OneToMany(mappedBy = "tipoContrato")
+	@JsonManagedReference
+	private List<Usuario> usuarios;
 	
 	//GETTERS AND SETTERS
 	public Long getId() {
@@ -62,5 +65,15 @@ public class TipoContrato {
 	public void setCuotasModeradora(List<CuotaModeradora> cuotasModeradora) {
 		this.cuotasModeradora = cuotasModeradora;
 	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
+	
 
 }

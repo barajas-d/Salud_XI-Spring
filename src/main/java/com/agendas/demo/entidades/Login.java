@@ -15,10 +15,10 @@ public class Login {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "CORREO")
+	@Column(name = "CORREO", nullable = false)
 	private String correo;
 	
-	@Column(name = "CONTRASENA")
+	@Column(name = "CONTRASENA", nullable = false)
 	private String contrasena;
 	
 	@Column(name = "ROL")

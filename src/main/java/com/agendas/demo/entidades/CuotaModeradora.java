@@ -2,37 +2,48 @@ package com.agendas.demo.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "CUOTAS_MODERADORAS")
 public class CuotaModeradora {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "VALOR")
 	private Float valor;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CITA")
 	@JsonBackReference
-	private TipoCita tiposCita;
+	private TipoCita tipoCita;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CONTRATO")
 	@JsonBackReference
 	private TipoContrato tiposContrato;
-
+	
+	
+	//CONSTRUCTORES
+	public CuotaModeradora() {
+		super();
+	}
+	
+	public CuotaModeradora(Float valor, TipoCita tipoCita, TipoContrato tiposContrato) {
+		super();
+		this.valor = valor;
+		this.tipoCita = tipoCita;
+		this.tiposContrato = tiposContrato;
+	}
 	
 	//GETTERS AND SETTERS
 	public Long getId() {
@@ -51,12 +62,12 @@ public class CuotaModeradora {
 		this.valor = valor;
 	}
 
-	public TipoCita getTiposCita() {
-		return tiposCita;
+	public TipoCita getTipoCita() {
+		return tipoCita;
 	}
 
-	public void setTiposCita(TipoCita tiposCita) {
-		this.tiposCita = tiposCita;
+	public void setTipoCita(TipoCita tipoCita) {
+		this.tipoCita = tipoCita;
 	}
 
 	public TipoContrato getTiposContrato() {

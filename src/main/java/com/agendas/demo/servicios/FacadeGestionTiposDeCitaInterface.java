@@ -1,14 +1,15 @@
 package com.agendas.demo.servicios;
 
 import com.agendas.demo.entidades.TipoCita;
+import com.agendas.entidadesDTO.TipoCitaDTO;
 
 public interface FacadeGestionTiposDeCitaInterface {
 
-	public TipoCita createTipoCita(TipoCita tipoCita);
+	public TipoCita createTipoCita(TipoCitaDTO tipoCita);
 
-	public TipoCita updateTipoCita(TipoCita tipoCita);
+	public TipoCita updateTipoCita(TipoCitaDTO tipoCita);
 
-	public TipoCita deleteTipoCita(Long idTipoDeCita);
+	public Boolean deleteTipoCita(Long idTipoDeCita);
 
 	public Iterable<TipoCita> getTiposDeCita(int inicial, int cantidad);
 
