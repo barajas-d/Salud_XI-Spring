@@ -60,10 +60,11 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 	
 	@Override
 	public Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario) {
-		
 		Usuario usuario = usuarioRepository.findByCedula(cedulaUsuario);
-		
-		Iterable<CitaMedica> citas = citaMedicaRepository.findByAsignadaAndUsuario(false, usuario);
-		return citas;
+		if(usuario != null) {
+			Iterable<CitaMedica> citas = citaMedicaRepository.findByAsignadaAndUsuario(false, usuario);
+			return citas;
+		}
+		return null;
 	}
 }

@@ -28,8 +28,10 @@ public class ServicioWebGestionCitas {
 	public ResponseEntity<Object> getCitasMedicasPorUsuario(@PathVariable Long cedulaUsuario) {
 		
 		Iterable<CitaMedica> citasMedicas = service.getCitasMedicasPorUsuario(cedulaUsuario);
-		
-		return new ResponseEntity<Object>(citasMedicas, HttpStatus.ACCEPTED);
+		if(citasMedicas != null) {
+			return new ResponseEntity<Object>(citasMedicas, HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<Object>(citasMedicas, HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/add")
@@ -47,8 +49,6 @@ public class ServicioWebGestionCitas {
 		if(result) {
 			return new ResponseEntity<Object>(result, HttpStatus.ACCEPTED);
 		}
-		else {
-			return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
-		}
+		return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
 	}
 }
