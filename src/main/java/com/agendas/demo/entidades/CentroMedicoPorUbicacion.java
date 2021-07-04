@@ -19,12 +19,12 @@ public class CentroMedicoPorUbicacion {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_CENTRO_MEDICO")
-	@JsonBackReference
+	//@JsonBackReference
 	private CentroMedico centroMedico;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_UBICACION")
-	@JsonBackReference
+	//@JsonBackReference
 	private Ubicacion ubicacion;
 
 	

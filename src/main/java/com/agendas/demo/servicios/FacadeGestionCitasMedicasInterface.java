@@ -1,6 +1,9 @@
 package com.agendas.demo.servicios;
 
+import org.springframework.http.ResponseEntity;
+
 import com.agendas.demo.entidades.CitaMedica;
+import com.agendas.demo.entidades.Sintomatologia;
 import com.agendas.entidadesDTO.CitaMedicaDTO;
 
 public interface FacadeGestionCitasMedicasInterface {
@@ -11,4 +14,5 @@ public interface FacadeGestionCitasMedicasInterface {
 	
 	Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario);
 
+	Iterable<Sintomatologia> getSintomatologias();
 }

@@ -32,22 +32,22 @@ public class CitaMedica {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CITA")
-	@JsonBackReference
+	//@JsonBackReference
 	private TipoCita tipoCita;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
-	@JsonBackReference
+	//@JsonBackReference
 	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_SINTOMATOLOGIA")
-	@JsonBackReference
+	//@JsonBackReference
 	private Sintomatologia sintomatologia;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_MEDICO", nullable = true)
-	@JsonBackReference
+	//@JsonBackReference
 	private Medico medico;
 	
 	public CitaMedica() {

@@ -14,4 +14,6 @@ public interface FacadeGestionTiposDeCitaInterface {
 	public Iterable<TipoCita> getTiposDeCita(int inicial, int cantidad);
 
 	public TipoCita getTipoCita(Long idTipoCita);
+	
+	public Iterable<TipoCita> getAllTiposDeCita();
 }

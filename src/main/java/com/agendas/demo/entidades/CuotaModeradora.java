@@ -24,12 +24,12 @@ public class CuotaModeradora {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CITA")
-	@JsonBackReference
+	//@JsonBackReference
 	private TipoCita tipoCita;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CONTRATO")
-	@JsonBackReference
+	//@JsonBackReference
 	private TipoContrato tiposContrato;
 	
 	

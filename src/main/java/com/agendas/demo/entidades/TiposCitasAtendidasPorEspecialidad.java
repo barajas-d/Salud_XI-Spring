@@ -19,12 +19,12 @@ public class TiposCitasAtendidasPorEspecialidad {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_ESPECIALIDAD")
-	@JsonBackReference
+	//@JsonBackReference
 	private Especialidad especialidad;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CITA")
-	@JsonBackReference
+	//@JsonBackReference
 	private TipoCita tipoCita;
 
 	

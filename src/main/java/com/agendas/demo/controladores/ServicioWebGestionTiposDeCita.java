@@ -26,18 +26,21 @@ public class ServicioWebGestionTiposDeCita{
 	@Autowired
 	private FacadeGestionTiposDeCitaInterface service;
 	
+	//Crear un tipo de cita
 	@PostMapping()
 	public ResponseEntity<Object> createTipoCita(@RequestBody TipoCitaDTO tipoCita) {
 		TipoCita tipoCitaNuevo = service.createTipoCita(tipoCita);
 		return new ResponseEntity<Object>(tipoCitaNuevo, HttpStatus.CREATED);
 	}
 	
+	//actualizar un tipo de cita
 	@PutMapping("/update")
 	public ResponseEntity<Object> updateTipoCita(@RequestBody TipoCitaDTO tipoCita) {
 		TipoCita tipoCitaActualizado = service.updateTipoCita(tipoCita);
 		return new ResponseEntity<Object>(tipoCitaActualizado, HttpStatus.CREATED);
 	}
 	
+	//eliminar un tipo de cita
 	@DeleteMapping("/delete/{idTipoDeCita}")
 	public ResponseEntity<Object> deleteTipoCita(@PathVariable Long idTipoDeCita) {
 		Boolean result = service.deleteTipoCita(idTipoDeCita);
@@ -49,16 +52,25 @@ public class ServicioWebGestionTiposDeCita{
 		}
 	}
 	
+	//obtener un tipo de cita dado su id
 	@GetMapping("/{idTipoCita}")
 	public ResponseEntity<Object> getTipoCita(@PathVariable Long idTipoCita) {
 		TipoCita tipoCita = service.getTipoCita(idTipoCita);
 		return new ResponseEntity<Object>(tipoCita, HttpStatus.CREATED);
 	}
 	
+	//obtener lista de tipos de cita, con paguinacion
 	@GetMapping("/{inicial}/{cantidad}")
 	public ResponseEntity<Object>  getTiposDeCita(@PathVariable int inicial, @PathVariable int cantidad){
 		Iterable<TipoCita> tiposCitas = service.getTiposDeCita(inicial, cantidad);
 		return new ResponseEntity<Object>(tiposCitas, HttpStatus.CREATED);
+	}
+	
+	//obtener todos los tipos de cita
+	@GetMapping()
+	public ResponseEntity<Object> getAllTiposDeCita(){
+		Iterable<TipoCita> tiposCita = service.getAllTiposDeCita();
+		return new ResponseEntity<Object>(tiposCita, HttpStatus.ACCEPTED);
 	}
 	
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -23,11 +24,13 @@ public class CentroMedico {
 	private String nombre;
 
 	@OneToMany(mappedBy = "centroMedico")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<CentroMedicoPorUbicacion> ubicaciones;
 	
 	@OneToMany(mappedBy = "centroMedico")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<Medico> medicos;
 	
 	//GETTERS AND SETTERS

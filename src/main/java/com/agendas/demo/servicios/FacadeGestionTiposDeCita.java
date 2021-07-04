@@ -28,9 +28,7 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	//Actualizar tipo de cita
 	@Override
 	public TipoCita updateTipoCita(TipoCitaDTO tipoCita) {
-		
 		Optional<TipoCita> tipoCitaActualizado = repository.findById(tipoCita.getId());
-		
 		if(tipoCitaActualizado.isPresent()){
 			tipoCitaActualizado.get().setNombre(tipoCita.getNombre());
 			tipoCitaActualizado.get().setDuracion(tipoCita.getDuracion());
@@ -45,9 +43,7 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	//Eliminar tipo de cita
 	@Override
 	public Boolean deleteTipoCita(Long idTipoDeCita) {
-
-		Optional<TipoCita> tipoCitaEliminar = repository.findById(idTipoDeCita);
-		
+		Optional<TipoCita> tipoCitaEliminar = repository.findById(idTipoDeCita);	
 		if(tipoCitaEliminar.isPresent()) {
 			repository.deleteById(idTipoDeCita);
 			return true;
@@ -59,10 +55,8 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	//Obtener grupo de tipos de cita
 	@Override
 	public Iterable<TipoCita> getTiposDeCita(int inicial, int cantidad) {
-
 		PageRequest pageRequest = PageRequest.of(inicial, cantidad);
-		Iterable<TipoCita> TiposDeCitas = repository.findAll(pageRequest);
-		
+		Iterable<TipoCita> TiposDeCitas = repository.findAll(pageRequest);	
 		return TiposDeCitas;
 	}
 
@@ -70,14 +64,17 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	//Obtener un tipo de cita
 	@Override
 	public TipoCita getTipoCita(Long idTipoCita) {
-
 		Optional<TipoCita> tipoCitaObtenido = repository.findById(idTipoCita);
-		
 		//if(tipoCitaObtenido .isPresent()) {
 			return tipoCitaObtenido.get();
-		//}
-		
+		//}	
 		//return null;
+	}
+
+	//obtener todos los tipos de cita
+	@Override
+	public Iterable<TipoCita> getAllTiposDeCita() {
+		return repository.findAll();
 	}
 	
 	

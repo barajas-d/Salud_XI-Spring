@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,16 +34,17 @@ public class Usuario {
 	
 	@ManyToOne 
 	@JoinColumn(name = "ID_UBICACION")
-	@JsonBackReference
+	//@JsonBackReference
 	private Ubicacion ubicacion;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_CONTRATO")
-	@JsonBackReference
+	//@JsonBackReference
 	private TipoContrato tipoContrato;
 	
 	@OneToMany(mappedBy = "usuario")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<CitaMedica> citasmedicas;
 	
 	

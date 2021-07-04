@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,11 +27,13 @@ public class TipoContrato {
 	private Long prioridad;
 	
 	@OneToMany(mappedBy = "tiposContrato")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<CuotaModeradora> cuotasModeradora;
 	
 	@OneToMany(mappedBy = "tipoContrato")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private List<Usuario> usuarios;
 	
 	//GETTERS AND SETTERS

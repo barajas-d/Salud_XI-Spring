@@ -67,4 +67,10 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 		}
 		return null;
 	}
+
+	@Override
+	public Iterable<Sintomatologia> getSintomatologias() {
+		return sintomatologiaRepository.findAll();
+	}
+
 }
