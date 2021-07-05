@@ -33,10 +33,8 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 			tipoCitaActualizado.get().setNombre(tipoCita.getNombre());
 			tipoCitaActualizado.get().setDuracion(tipoCita.getDuracion());
 			return repository.save(tipoCitaActualizado.get());
-		}
-		
-		return null;
-			
+		}	
+		return null;		
 	}
 
 
@@ -56,8 +54,8 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	@Override
 	public Iterable<TipoCita> getTiposDeCita(int inicial, int cantidad) {
 		PageRequest pageRequest = PageRequest.of(inicial, cantidad);
-		Iterable<TipoCita> TiposDeCitas = repository.findAll(pageRequest);	
-		return TiposDeCitas;
+		Iterable<TipoCita> tiposDeCitas = repository.findAll(pageRequest);	
+		return tiposDeCitas;
 	}
 
 

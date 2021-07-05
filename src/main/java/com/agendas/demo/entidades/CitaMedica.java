@@ -50,6 +50,8 @@ public class CitaMedica {
 	//@JsonBackReference
 	private Medico medico;
 	
+	
+	//CONSTRUCTORES
 	public CitaMedica() {
 		super();
 	}

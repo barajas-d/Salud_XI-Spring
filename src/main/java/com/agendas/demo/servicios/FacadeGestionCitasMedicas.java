@@ -32,26 +32,24 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 	
 	@Override
 	public CitaMedica createCitaMedica(CitaMedicaDTO citaMedica){
-
 		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(citaMedica.getTipoCita());	
-		Optional<Usuario> usuario = usuarioRepository.findById(citaMedica.getUsuario());
+		Usuario usuario = usuarioRepository.findByCedula(citaMedica.getUsuario());
 		Optional<Sintomatologia> sintomatologia = sintomatologiaRepository.findById(citaMedica.getSintomatologia());
-			
-		CitaMedica nuevaCitaMedica = new CitaMedica(tipoCita.get(), usuario.get(), sintomatologia.get());
+		
+		CitaMedica nuevaCitaMedica = new CitaMedica(tipoCita.get(), usuario, sintomatologia.get());
 		return citaMedicaRepository.save(nuevaCitaMedica);
 	}
 	
 	@Override
-	public Boolean deleteCitaMedica(Long idCitaMedica) {
-		
-		Optional<CitaMedica> citaMedicaEliminar = citaMedicaRepository.findById(idCitaMedica);
-		
+	public Boolean deleteCitaMedica(Long idCitaMedica) {	
+		Optional<CitaMedica> citaMedicaEliminar = citaMedicaRepository.findById(idCitaMedica);		
 		if(citaMedicaEliminar.isPresent()) {
 			if(citaMedicaEliminar.get().getAsignada() == false) {
 				citaMedicaRepository.deleteById(idCitaMedica);
 				return true;
 			}
 			else {
+				return false;
 				//La cita medica ya esta asignada
 			}
 		}

@@ -47,7 +47,19 @@ public class Usuario {
 	@JsonIgnore
 	private List<CitaMedica> citasmedicas;
 	
+	//CONSTRUCTORES
+	public Usuario() {
+		super();
+	}
 	
+	public Usuario(String nombre, Long cedula, String correo, TipoContrato tipoContrato, Ubicacion ubicacion){
+		super();
+		this.nombre = nombre;
+		this.cedula = cedula;
+		this.correo = correo;
+		this.ubicacion = ubicacion;
+		this.tipoContrato = tipoContrato;
+	}
 	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;

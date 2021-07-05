@@ -11,9 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "MEDICOS")
@@ -24,7 +22,7 @@ public class Medico {
 	private Long id;
 	
 	@Column(name = "NOMBRE", nullable = false)
-	private String nimbre;
+	private String nombre;
 	
 	@Column(name = "CEDULA", unique = true)
 	private Long cedula;
@@ -45,9 +43,22 @@ public class Medico {
 	//@JsonManagedReference
 	@JsonIgnore
 	private List<CitaMedica> citasMedicas;
+
+	//CONSTRUCTORES
+	public Medico() {
+		super();
+	}
+	
+	public Medico(String nombre2, Long cedula2, Long intensidadHoraria2, CentroMedico centroMedico2,
+			Especialidad especialidad2) {
+		this.nombre = nombre2;
+		this.cedula = cedula2;
+		this.intensidadHoraria = intensidadHoraria2;
+		this.centroMedico = centroMedico2;
+		this.especialidad = especialidad2;
+	}
 	
 	//GETTERS AND SETTERS
-
 	public Long getId() {
 		return id;
 	}
@@ -56,12 +67,12 @@ public class Medico {
 		this.id = id;
 	}
 
-	public String getNimbre() {
-		return nimbre;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNimbre(String nimbre) {
-		this.nimbre = nimbre;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Long getCedula() {

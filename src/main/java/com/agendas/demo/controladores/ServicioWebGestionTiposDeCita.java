@@ -27,7 +27,7 @@ public class ServicioWebGestionTiposDeCita{
 	private FacadeGestionTiposDeCitaInterface service;
 	
 	//Crear un tipo de cita
-	@PostMapping()
+	@PostMapping("/add")
 	public ResponseEntity<Object> createTipoCita(@RequestBody TipoCitaDTO tipoCita) {
 		TipoCita tipoCitaNuevo = service.createTipoCita(tipoCita);
 		return new ResponseEntity<Object>(tipoCitaNuevo, HttpStatus.CREATED);
@@ -56,14 +56,14 @@ public class ServicioWebGestionTiposDeCita{
 	@GetMapping("/{idTipoCita}")
 	public ResponseEntity<Object> getTipoCita(@PathVariable Long idTipoCita) {
 		TipoCita tipoCita = service.getTipoCita(idTipoCita);
-		return new ResponseEntity<Object>(tipoCita, HttpStatus.CREATED);
+		return new ResponseEntity<Object>(tipoCita, HttpStatus.ACCEPTED);
 	}
 	
-	//obtener lista de tipos de cita, con paguinacion
+	//obtener lista de tipos de cita, con paginacion
 	@GetMapping("/{inicial}/{cantidad}")
-	public ResponseEntity<Object>  getTiposDeCita(@PathVariable int inicial, @PathVariable int cantidad){
+	public ResponseEntity<Object> getTiposDeCita(@PathVariable int inicial, @PathVariable int cantidad){
 		Iterable<TipoCita> tiposCitas = service.getTiposDeCita(inicial, cantidad);
-		return new ResponseEntity<Object>(tiposCitas, HttpStatus.CREATED);
+		return new ResponseEntity<Object>(tiposCitas, HttpStatus.ACCEPTED);
 	}
 	
 	//obtener todos los tipos de cita
