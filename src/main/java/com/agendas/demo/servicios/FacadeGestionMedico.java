@@ -77,4 +77,14 @@ public class FacadeGestionMedico implements FacadeGestionMedicoInterface{
 		return null;
 	}
 
+	@Override
+	public Iterable<Especialidad> getEspecialidades() {
+		return especialidadRepository.findAll();
+	}
+
+	@Override
+	public Iterable<CentroMedico> getCentrosMedicos() {
+		return centroMedicoRepository.findAll();
+	}
+
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agendas.demo.entidades.CentroMedico;
+import com.agendas.demo.entidades.Especialidad;
 import com.agendas.demo.entidades.Medico;
 import com.agendas.demo.servicios.FacadeGestionMedicoInterface;
 import com.agendas.entidadesDTO.MedicoDTO;
@@ -56,5 +58,26 @@ public class ServicioWebGestionMedicos {
 	public ResponseEntity<Object> getUsuarios(@PathVariable int inicial, @PathVariable int cantidad){
 		Iterable<Medico> medicos = service.getMedicos(inicial, cantidad);
 		return new ResponseEntity<Object>(medicos, HttpStatus.ACCEPTED);
+	}
+	
+	//Obtener medico a partir de un id
+	@GetMapping("/{idMedico}")
+	public ResponseEntity<Object> getMedico(@PathVariable Long idMedico){
+		Medico medico = service.getMedico(idMedico);
+		return new ResponseEntity<Object>(medico, HttpStatus.ACCEPTED);
+	}
+	
+	//Obtener lista de especialidades
+	@GetMapping("/especialidades")
+	public ResponseEntity<Object> getEspecialidades(){
+		Iterable<Especialidad> especialidades = service.getEspecialidades();
+		return new ResponseEntity<Object>(especialidades, HttpStatus.ACCEPTED);
+	}
+	
+	//Obtener lista de centros médicos
+	@GetMapping("/centrosMedicos")
+	public ResponseEntity<Object> getCentrosMedicos(){
+		Iterable<CentroMedico> centrosMedicos = service.getCentrosMedicos();
+		return new ResponseEntity<Object>(centrosMedicos, HttpStatus.ACCEPTED);
 	}
 }

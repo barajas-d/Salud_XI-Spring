@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agendas.demo.entidades.TipoContrato;
+import com.agendas.demo.entidades.Ubicacion;
 import com.agendas.demo.entidades.Usuario;
 import com.agendas.demo.servicios.FacadeGestionUsuarioInterface;
 import com.agendas.entidadesDTO.UsuarioDTO;
@@ -57,4 +59,26 @@ public class ServicioWebGestionUsuarios {
 		Iterable<Usuario> usuarios = service.getUsuarios(inicial, cantidad);
 		return new ResponseEntity<Object>(usuarios, HttpStatus.ACCEPTED);
 	}
+	
+	//Obtener usuario a partir de un id
+	@GetMapping("/{idUsuario}")
+	public ResponseEntity<Object> getUsuario(@PathVariable Long idUsuario){
+		Usuario usuario = service.getUsuario(idUsuario);
+		return new ResponseEntity<Object>(usuario, HttpStatus.ACCEPTED);
+	}
+	
+	//Obtener lista de ubicaciones
+	@GetMapping("/ubicaciones")
+	public ResponseEntity<Object> getUbicaciones(){
+		Iterable<Ubicacion> ubicaciones = service.getUbicaciones();
+		return new ResponseEntity<Object>(ubicaciones, HttpStatus.ACCEPTED);
+	}
+	
+	//Obtener lista de tipos de contrato
+	@GetMapping("/tiposContrato")
+	public ResponseEntity<Object> getTiposContrato(){
+		Iterable<TipoContrato> tiposContrato = service.getTipoContrato();
+		return new ResponseEntity<Object>(tiposContrato, HttpStatus.ACCEPTED);
+	}
+	
 }

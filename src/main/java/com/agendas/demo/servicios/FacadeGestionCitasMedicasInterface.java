@@ -1,7 +1,5 @@
 package com.agendas.demo.servicios;
 
-import org.springframework.http.ResponseEntity;
-
 import com.agendas.demo.entidades.CitaMedica;
 import com.agendas.demo.entidades.Sintomatologia;
 import com.agendas.entidadesDTO.CitaMedicaDTO;

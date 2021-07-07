@@ -7,8 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table(name = "TIPOS_CITAS_ATENDIDAS_POR_ESPECIALIDAD")
 public class TiposCitasAtendidasPorEspecialidad {
@@ -27,7 +25,16 @@ public class TiposCitasAtendidasPorEspecialidad {
 	//@JsonBackReference
 	private TipoCita tipoCita;
 
+	//CONSTRUCTORES
+	public TiposCitasAtendidasPorEspecialidad() {
+		super();
+	}
 	
+	public TiposCitasAtendidasPorEspecialidad(Especialidad especialidad, TipoCita tipoCita) {
+		super();
+		this.especialidad = especialidad;
+		this.tipoCita = tipoCita;
+	}
 	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;

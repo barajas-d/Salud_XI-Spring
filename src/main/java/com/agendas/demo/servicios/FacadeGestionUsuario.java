@@ -77,4 +77,16 @@ public class FacadeGestionUsuario implements FacadeGestionUsuarioInterface{
 		return null;
 	}
 
+	@Override
+	public Iterable<Ubicacion> getUbicaciones() {
+		return ubicacionRepository.findAll();
+	}
+
+	@Override
+	public Iterable<TipoContrato> getTipoContrato() {
+		return tipoContratoRepository.findAll();
+	}
+
+
+	
 }

@@ -34,11 +34,8 @@ public class FacadeGestionCuotaModeradora implements FacadeGestionCuotaModerador
 
 	@Override
 	public CuotaModeradora createCuotaModeradora(CuotaModeradoraDTO cuotaModeradora) {
-		
 		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(cuotaModeradora.getTipoCita());
-		System.out.println(tipoCita.get().getNombre());
 		Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(cuotaModeradora.getTipoContrato());
-		System.out.println(tipoContrato.get().getNombre());
 
 		CuotaModeradora cuotaModeradoraNueva = new CuotaModeradora(cuotaModeradora.getValor(), tipoCita.get(), tipoContrato.get());
 		
@@ -64,9 +61,20 @@ public class FacadeGestionCuotaModeradora implements FacadeGestionCuotaModerador
 
 		PageRequest pageRequest = PageRequest.of(inicial, cantidad);
 		Iterable<CuotaModeradora> cuotasModeradoras = cuotaModeradoraRepository.findAll(pageRequest);
-		pageRequest.getPageNumber();
 		
 		return cuotasModeradoras;
+	}
+
+
+	@Override
+	public Iterable<TipoCita> getTipoCita() {
+		return tipoCitaRepository.findAll();
+	}
+
+
+	@Override
+	public Iterable<TipoContrato> getTipoContrato() {
+		return tipoContratoRepository.findAll();
 	}
 	
 	
