@@ -72,4 +72,12 @@ public class ServicioWebGestionCuotaModeradora {
 		Iterable<TipoContrato> tiposContrato = service.getTipoContrato();
 		return new ResponseEntity<Object>(tiposContrato, HttpStatus.ACCEPTED);
 	}
+	
+	//Obtener cuota moderadora para un tipo de cita y tipo contrato
+	@GetMapping("/valor/{idTipoCita}/{idTipoContrato}")
+	public ResponseEntity<Object> getValorCuotaModeradora(@PathVariable Long idTipoCita, @PathVariable Long idTipoContrato){
+		CuotaModeradora cuotaModeradora = service.getValorCuotaModeradora(idTipoCita, idTipoContrato);
+		return new ResponseEntity<Object>(cuotaModeradora, HttpStatus.ACCEPTED);
+	}
+	
 }

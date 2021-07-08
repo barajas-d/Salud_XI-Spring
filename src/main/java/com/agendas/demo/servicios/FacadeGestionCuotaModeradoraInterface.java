@@ -19,5 +19,7 @@ public interface FacadeGestionCuotaModeradoraInterface {
 	public Iterable<TipoContrato> getTipoContrato();
 	//obtener todas las cuotas moderadoras
 	public Iterable<CuotaModeradora> getAll();
+	//obtener valor cuota moderadora con base en tipo de cita y tipo de contrato
+	public CuotaModeradora getValorCuotaModeradora(Long idTipoCita, Long idTipoContrato);
 	
 }

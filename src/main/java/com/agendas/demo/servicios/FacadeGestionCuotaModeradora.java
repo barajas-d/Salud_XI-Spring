@@ -76,8 +76,14 @@ public class FacadeGestionCuotaModeradora implements FacadeGestionCuotaModerador
 	public Iterable<TipoContrato> getTipoContrato() {
 		return tipoContratoRepository.findAll();
 	}
-	
-	
-	
+
+
+	@Override
+	public CuotaModeradora getValorCuotaModeradora(Long idTipoCita, Long idTipoContrato) {
+		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(idTipoCita);
+		Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(idTipoContrato);
+		CuotaModeradora cuotaModeradora = cuotaModeradoraRepository.findByTipoCitaAndTiposContrato(tipoCita.get(), tipoContrato.get());
+		return cuotaModeradora;
+	}
 	
 }
