@@ -9,13 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
+
+@NamedStoredProcedureQuery(name = "agendarCitas", procedureName = "PROCESO_MASIVO_AGENDAR_CITAS.AGENDAR_CITAS")
+
 @Table(name = "CITAS_MEDICAS")
 public class CitaMedica {
 
