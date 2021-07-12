@@ -12,7 +12,7 @@ import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoCitaRepository;
 import com.agendas.demo.entidades.TiposCitasAtendidasPorEspecialidad;
 import com.agendas.demo.entidades.TiposCitasAtendidasPorEspecialidadRepository;
-import com.agendas.entidadesDTO.TiposCitaPorEspecialidadDto;
+import com.agendas.demo.entidadesDTO.TiposCitaPorEspecialidadDto;
 
 @Service
 public class FacadeGestionTipoDeCitaPorEspecialidad implements FacadeGestionTipoDeCitaPorEspecialidadInterface{

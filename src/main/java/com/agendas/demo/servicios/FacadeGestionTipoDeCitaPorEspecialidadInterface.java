@@ -3,7 +3,7 @@ package com.agendas.demo.servicios;
 import com.agendas.demo.entidades.Especialidad;
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TiposCitasAtendidasPorEspecialidad;
-import com.agendas.entidadesDTO.TiposCitaPorEspecialidadDto;
+import com.agendas.demo.entidadesDTO.TiposCitaPorEspecialidadDto;
 
 public interface FacadeGestionTipoDeCitaPorEspecialidadInterface {
 	

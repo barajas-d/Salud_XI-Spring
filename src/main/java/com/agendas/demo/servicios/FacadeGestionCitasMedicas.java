@@ -19,8 +19,8 @@ import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoCitaRepository;
 import com.agendas.demo.entidades.Usuario;
 import com.agendas.demo.entidades.UsuarioRepository;
-import com.agendas.entidadesDTO.AgendaDto;
-import com.agendas.entidadesDTO.CitaMedicaDTO;
+import com.agendas.demo.entidadesDTO.AgendaDto;
+import com.agendas.demo.entidadesDTO.CitaMedicaDTO;
 
 @Service
 public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInterface{

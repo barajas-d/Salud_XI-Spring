@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agendas.demo.entidades.CentroMedico;
 import com.agendas.demo.entidades.Especialidad;
 import com.agendas.demo.entidades.Medico;
+import com.agendas.demo.entidadesDTO.MedicoDTO;
 import com.agendas.demo.servicios.FacadeGestionMedicoInterface;
-import com.agendas.entidadesDTO.MedicoDTO;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -60,10 +60,10 @@ public class ServicioWebGestionMedicos {
 		return new ResponseEntity<Object>(medicos, HttpStatus.ACCEPTED);
 	}
 	
-	//Obtener medico a partir de un id
-	@GetMapping("/{idMedico}")
-	public ResponseEntity<Object> getMedico(@PathVariable Long idMedico){
-		Medico medico = service.getMedico(idMedico);
+	//Obtener medico a partir de su cedula
+	@GetMapping("/{cedulaMedico}")
+	public ResponseEntity<Object> getMedico(@PathVariable Long cedulaMedico){
+		Medico medico = service.getMedico(cedulaMedico);
 		return new ResponseEntity<Object>(medico, HttpStatus.ACCEPTED);
 	}
 	

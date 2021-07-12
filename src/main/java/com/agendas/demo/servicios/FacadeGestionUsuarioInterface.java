@@ -3,7 +3,7 @@ package com.agendas.demo.servicios;
 import com.agendas.demo.entidades.TipoContrato;
 import com.agendas.demo.entidades.Ubicacion;
 import com.agendas.demo.entidades.Usuario;
-import com.agendas.entidadesDTO.UsuarioDTO;
+import com.agendas.demo.entidadesDTO.UsuarioDTO;
 
 public interface FacadeGestionUsuarioInterface {
 

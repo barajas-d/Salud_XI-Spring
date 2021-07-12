@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agendas.demo.entidades.TipoCita;
+import com.agendas.demo.entidadesDTO.TipoCitaDTO;
 import com.agendas.demo.servicios.FacadeGestionTiposDeCitaInterface;
-import com.agendas.entidadesDTO.TipoCitaDTO;
 
 @RestController
 @CrossOrigin(origins = "*")

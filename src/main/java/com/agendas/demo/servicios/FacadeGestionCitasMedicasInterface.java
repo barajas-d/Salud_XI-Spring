@@ -2,8 +2,8 @@ package com.agendas.demo.servicios;
 
 import com.agendas.demo.entidades.CitaMedica;
 import com.agendas.demo.entidades.Sintomatologia;
-import com.agendas.entidadesDTO.AgendaDto;
-import com.agendas.entidadesDTO.CitaMedicaDTO;
+import com.agendas.demo.entidadesDTO.AgendaDto;
+import com.agendas.demo.entidadesDTO.CitaMedicaDTO;
 
 public interface FacadeGestionCitasMedicasInterface {
 

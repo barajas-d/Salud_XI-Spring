@@ -1,7 +1,7 @@
 package com.agendas.demo.servicios;
 
 import com.agendas.demo.entidades.TipoCita;
-import com.agendas.entidadesDTO.TipoCitaDTO;
+import com.agendas.demo.entidadesDTO.TipoCitaDTO;
 
 public interface FacadeGestionTiposDeCitaInterface {
 

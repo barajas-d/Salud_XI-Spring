@@ -12,7 +12,7 @@ import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoCitaRepository;
 import com.agendas.demo.entidades.TipoContrato;
 import com.agendas.demo.entidades.TipoContratoRepository;
-import com.agendas.entidadesDTO.CuotaModeradoraDTO;
+import com.agendas.demo.entidadesDTO.CuotaModeradoraDTO;
 
 @Service
 public class FacadeGestionCuotaModeradora implements FacadeGestionCuotaModeradoraInterface{

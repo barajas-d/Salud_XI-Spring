@@ -12,7 +12,7 @@ import com.agendas.demo.entidades.Ubicacion;
 import com.agendas.demo.entidades.UbicacionRepository;
 import com.agendas.demo.entidades.Usuario;
 import com.agendas.demo.entidades.UsuarioRepository;
-import com.agendas.entidadesDTO.UsuarioDTO;
+import com.agendas.demo.entidadesDTO.UsuarioDTO;
 
 @Service
 public class FacadeGestionUsuario implements FacadeGestionUsuarioInterface{

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agendas.demo.entidades.Especialidad;
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TiposCitasAtendidasPorEspecialidad;
+import com.agendas.demo.entidadesDTO.TiposCitaPorEspecialidadDto;
 import com.agendas.demo.servicios.FacadeGestionTipoDeCitaPorEspecialidadInterface;
-import com.agendas.entidadesDTO.TiposCitaPorEspecialidadDto;
 
 @RestController
 @CrossOrigin(origins = "*")

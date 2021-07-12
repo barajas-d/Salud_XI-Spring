@@ -12,7 +12,7 @@ import com.agendas.demo.entidades.Especialidad;
 import com.agendas.demo.entidades.EspecialidadRepository;
 import com.agendas.demo.entidades.Medico;
 import com.agendas.demo.entidades.MedicoRepository;
-import com.agendas.entidadesDTO.MedicoDTO;
+import com.agendas.demo.entidadesDTO.MedicoDTO;
 
 @Service
 public class FacadeGestionMedico implements FacadeGestionMedicoInterface{
@@ -69,10 +69,10 @@ public class FacadeGestionMedico implements FacadeGestionMedicoInterface{
 	}
 
 	@Override
-	public Medico getMedico(Long idMedico) {
-		Optional<Medico> medicoObtenido = medicoRepository.findById(idMedico);
-		if(medicoObtenido.isPresent()) {
-			return medicoObtenido.get();
+	public Medico getMedico(Long cedulaMedico) {
+		Medico medicoObtenido = medicoRepository.findByCedula(cedulaMedico);
+		if(medicoObtenido != null) {
+			return medicoObtenido;
 		}	
 		return null;
 	}

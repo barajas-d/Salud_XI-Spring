@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agendas.demo.entidades.Login;
 import com.agendas.demo.entidades.LoginRepository;
-import com.agendas.entidadesDTO.LoginDTO;
+import com.agendas.demo.entidadesDTO.LoginDTO;
 
 @RestController
 @CrossOrigin(origins = "*")

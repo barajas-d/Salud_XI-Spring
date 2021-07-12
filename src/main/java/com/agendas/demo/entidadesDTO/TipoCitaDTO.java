@@ -1,4 +1,4 @@
-package com.agendas.entidadesDTO;
+package com.agendas.demo.entidadesDTO;
 
 public class TipoCitaDTO {
 

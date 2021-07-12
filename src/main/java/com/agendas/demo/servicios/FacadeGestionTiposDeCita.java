@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoCitaRepository;
-import com.agendas.entidadesDTO.TipoCitaDTO;
+import com.agendas.demo.entidadesDTO.TipoCitaDTO;
 
 @Service
 public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterface{

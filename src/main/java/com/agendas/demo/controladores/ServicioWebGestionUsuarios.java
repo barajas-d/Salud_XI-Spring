@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agendas.demo.entidades.TipoContrato;
 import com.agendas.demo.entidades.Ubicacion;
 import com.agendas.demo.entidades.Usuario;
+import com.agendas.demo.entidadesDTO.UsuarioDTO;
 import com.agendas.demo.servicios.FacadeGestionUsuarioInterface;
-import com.agendas.entidadesDTO.UsuarioDTO;
 
 @RestController
 @CrossOrigin(origins = "*")

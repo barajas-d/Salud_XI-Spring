@@ -3,7 +3,7 @@ package com.agendas.demo.servicios;
 import com.agendas.demo.entidades.CuotaModeradora;
 import com.agendas.demo.entidades.TipoCita;
 import com.agendas.demo.entidades.TipoContrato;
-import com.agendas.entidadesDTO.CuotaModeradoraDTO;
+import com.agendas.demo.entidadesDTO.CuotaModeradoraDTO;
 
 public interface FacadeGestionCuotaModeradoraInterface {
 

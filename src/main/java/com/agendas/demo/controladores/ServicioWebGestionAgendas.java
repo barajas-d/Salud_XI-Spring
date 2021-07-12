@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agendas.demo.entidades.CitaMedica;
-import com.agendas.demo.servicios.FacadeGestionCitasMedicas;
+import com.agendas.demo.entidadesDTO.AgendaDto;
 import com.agendas.demo.servicios.FacadeGestionCitasMedicasInterface;
-import com.agendas.entidadesDTO.AgendaDto;
 
 @RestController
 @CrossOrigin(origins = "*")
