@@ -1,5 +1,7 @@
 package com.agendas.demo.controladores;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,14 +29,18 @@ public class ServicioWebGestionCitas {
 	
 	
 	//obtener citas medicas de un usuario
-	@GetMapping("/{cedulaUsuario}")
-	public ResponseEntity<Object> getCitasMedicasPorUsuario(@PathVariable Long cedulaUsuario) {
+	@GetMapping("/{cedulaUsuario}/{page}/{size}")
+	public ResponseEntity<Object> getCitasMedicasPorUsuario(@PathVariable Long cedulaUsuario, @PathVariable int page, @PathVariable int size) {
+		Iterable<CitaMedica> citasMedicas = service.getCitasMedicasPorUsuario(cedulaUsuario, page, size);
+		Integer cantidadCitasUsuario = service.getCantidadCitasMedicasPorUsuario(cedulaUsuario);
 		
-		Iterable<CitaMedica> citasMedicas = service.getCitasMedicasPorUsuario(cedulaUsuario);
+		HashMap<String, Object> jsonEnviar = new HashMap<String, Object>();
+		jsonEnviar.put("content", citasMedicas);
+		jsonEnviar.put("totalElements", cantidadCitasUsuario);
 		if(citasMedicas != null) {
-			return new ResponseEntity<Object>(citasMedicas, HttpStatus.ACCEPTED);
+			return new ResponseEntity<Object>(jsonEnviar, HttpStatus.ACCEPTED);
 		}
-		return new ResponseEntity<Object>(citasMedicas, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
 	}
 	
 	//crear una cita medica
@@ -47,8 +53,10 @@ public class ServicioWebGestionCitas {
 	
 	//eliminar una cita medica
 	@DeleteMapping("/delete/{idCitaMedica}")
-	public ResponseEntity<Object> deleteCitaMedica(@PathVariable Long idCitaMedica){	
-		Boolean result = service.deleteCitaMedica(idCitaMedica);	
+	public ResponseEntity<Object> deleteCitaMedica(@PathVariable Long idCitaMedica){
+		System.out.println("idCita: " + idCitaMedica);
+		Boolean result = service.deleteCitaMedica(idCitaMedica);
+		System.out.println("estado: " + result);
 		if(result) {
 			return new ResponseEntity<Object>(result, HttpStatus.ACCEPTED);
 		}

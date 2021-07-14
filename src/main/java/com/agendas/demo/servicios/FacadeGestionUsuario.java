@@ -87,6 +87,11 @@ public class FacadeGestionUsuario implements FacadeGestionUsuarioInterface{
 		return tipoContratoRepository.findAll();
 	}
 
+	@Override
+	public Usuario getUsuarioByCC(Long cedulaUsuario) {
+		return usuarioRepository.findByCedula(cedulaUsuario);
+	}
+
 
 	
 }

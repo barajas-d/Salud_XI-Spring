@@ -54,24 +54,18 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 	public Boolean deleteCitaMedica(Long idCitaMedica) {	
 		Optional<CitaMedica> citaMedicaEliminar = citaMedicaRepository.findById(idCitaMedica);		
 		if(citaMedicaEliminar.isPresent()) {
-			if(citaMedicaEliminar.get().getAsignada() == false) {
-				citaMedicaRepository.deleteById(idCitaMedica);
-				return true;
-			}
-			else {
-				return false;
-				//La cita medica ya esta asignada
-			}
+			citaMedicaRepository.deleteById(idCitaMedica);
+			return true;
 		}
 		return false;
 	}
 	
 	@Override
-	public Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario) {
+	public Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario, int inicial, int cantidad) {
 		Usuario usuario = usuarioRepository.findByCedula(cedulaUsuario);
 		if(usuario != null) {
-			//Iterable<CitaMedica> citas = citaMedicaRepository.findByAsignadaAndUsuario(false, usuario);
-			Iterable<CitaMedica> citas = citaMedicaRepository.findByUsuario(usuario);
+			PageRequest pageRequest = PageRequest.of(inicial, cantidad);
+			Iterable<CitaMedica> citas = citaMedicaRepository.findByUsuarioOrderByFechaDesc(usuario, pageRequest);
 			return citas;
 		}
 		return null;
@@ -127,6 +121,16 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	public Integer getCantidadCitasMedicasPorUsuario(Long cedulaUsuario) {
+		Usuario usuario = usuarioRepository.findByCedula(cedulaUsuario);
+		if(usuario != null) {
+			List<CitaMedica> citas = citaMedicaRepository.findByUsuario(usuario);
+			return citas.size();
+		}
+		return null;
 	}
 
 }

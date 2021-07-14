@@ -21,4 +21,6 @@ public interface FacadeGestionUsuarioInterface {
 	public Iterable<Ubicacion> getUbicaciones();
 	//Obtener tipos de contrato
 	public Iterable<TipoContrato> getTipoContrato();
+	//obtener usuario por numero de cedula
+	public Usuario getUsuarioByCC(Long cedulaUsuario);
 }

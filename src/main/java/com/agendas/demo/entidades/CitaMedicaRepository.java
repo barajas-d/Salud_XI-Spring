@@ -14,6 +14,7 @@ public interface CitaMedicaRepository extends JpaRepository<CitaMedica, Long>{
 	List<CitaMedica> findByAsignada(Boolean asignada);
 	List<CitaMedica> findByAsignada(Boolean asignada, Pageable pageable);
 	List<CitaMedica> findByAsignadaOrderByUsuario(Boolean asignada, Pageable pageable);
+	List<CitaMedica> findByUsuarioOrderByFechaDesc(Usuario usuario, Pageable pageable);
 	List<CitaMedica> findByUsuario(Usuario usuario);
 	List<CitaMedica> findByAsignadaAndUsuario(Boolean asignada, Usuario usuario);
 	List<CitaMedica> findByMedicoOrderByFecha(Medico medico);

@@ -7,8 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table(name = "CENTROS_MEDICOS_POR_UBICACION")
 public class CentroMedicoPorUbicacion {
@@ -19,15 +17,24 @@ public class CentroMedicoPorUbicacion {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_CENTRO_MEDICO")
-	//@JsonBackReference
 	private CentroMedico centroMedico;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_UBICACION")
-	//@JsonBackReference
 	private Ubicacion ubicacion;
 
-	
+	//CONSTRUCTORES
+	public CentroMedicoPorUbicacion() {
+		super();
+	}
+
+	public CentroMedicoPorUbicacion(CentroMedico centroMedico, Ubicacion ubicacion) {
+		super();
+		this.centroMedico = centroMedico;
+		this.ubicacion = ubicacion;
+	}
+
+
 	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;

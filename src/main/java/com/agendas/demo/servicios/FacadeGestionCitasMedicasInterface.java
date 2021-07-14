@@ -11,11 +11,10 @@ public interface FacadeGestionCitasMedicasInterface {
 	CitaMedica createCitaMedica(CitaMedicaDTO citaMedica);
 	//eliminar cita medica sin agendar
 	Boolean deleteCitaMedica(Long idCitaMedica);
-	//obtener lista de citas medicas por cedula de usuario
-	Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario);
+	//obtener lista de citas medicas por cedula de usuario con paginación
+	Iterable<CitaMedica> getCitasMedicasPorUsuario(Long cedulaUsuario, int inicial, int cantidad);
 	//obtener sintomatologias
 	Iterable<Sintomatologia> getSintomatologias();
-	
 	//Obtener citas medicas agendadas basadas en fecha y medico
 	Iterable<CitaMedica> getAgenda(AgendaDto agenda);
 	//Obtener citas medicas sin agendar con paginación
@@ -24,4 +23,6 @@ public interface FacadeGestionCitasMedicasInterface {
 	Boolean AgendarCitas();
 	//Obtener cantidad de citas medicas sin agendar
 	Long getCantidadCitasSinAgendar();
+	//obtener candiad de citas medicas por usuario
+	Integer getCantidadCitasMedicasPorUsuario(Long cedulaUsuario);
 }

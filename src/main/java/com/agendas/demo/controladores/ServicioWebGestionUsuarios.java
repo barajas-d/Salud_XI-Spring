@@ -67,6 +67,13 @@ public class ServicioWebGestionUsuarios {
 		return new ResponseEntity<Object>(usuario, HttpStatus.ACCEPTED);
 	}
 	
+	//Obtener usuario a partir de un id
+	@GetMapping("/cedula/{cedulaUsuario}")
+	public ResponseEntity<Object> getUsuarioByCC(@PathVariable Long cedulaUsuario){
+		Usuario usuario = service.getUsuarioByCC(cedulaUsuario);
+		return new ResponseEntity<Object>(usuario, HttpStatus.ACCEPTED);
+	}
+	
 	//Obtener lista de ubicaciones
 	@GetMapping("/ubicaciones")
 	public ResponseEntity<Object> getUbicaciones(){
