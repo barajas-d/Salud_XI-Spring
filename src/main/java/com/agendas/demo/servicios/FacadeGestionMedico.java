@@ -28,37 +28,48 @@ public class FacadeGestionMedico implements FacadeGestionMedicoInterface{
 	
 	@Override
 	public Medico createMedico(MedicoDTO medico) {
-		Optional<Especialidad> especialidad = especialidadRepository.findById(medico.getEspecialidad());
-		Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(medico.getCentroMedico());
-		
-		Medico nuevoMedico = new Medico(medico.getNombre(), medico.getCedula(), medico.getIntensidadHoraria(), centroMedico.get(), especialidad.get());
-		return medicoRepository.save(nuevoMedico);
+		try {
+			Optional<Especialidad> especialidad = especialidadRepository.findById(medico.getEspecialidad());
+			Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(medico.getCentroMedico());
+			Medico nuevoMedico = new Medico(medico.getNombre(), medico.getCedula(), medico.getIntensidadHoraria(), centroMedico.get(), especialidad.get());
+			return medicoRepository.save(nuevoMedico);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Medico updateMedico(MedicoDTO medico) {
-		Optional<Medico> medicoActualizado = medicoRepository.findById(medico.getId());
-		if(medicoActualizado.isPresent()) {
-			medicoActualizado.get().setNombre(medico.getNombre());
-			medicoActualizado.get().setCedula(medico.getCedula());
-			medicoActualizado.get().setIntensidadHoraria(medico.getIntensidadHoraria());
-			Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(medico.getCentroMedico());
-			medicoActualizado.get().setCentroMedico(centroMedico.get());
-			Optional<Especialidad> especialidad = especialidadRepository.findById(medico.getEspecialidad());
-			medicoActualizado.get().setEspecialidad(especialidad.get());
-			return medicoRepository.save(medicoActualizado.get());
+		try {
+			Optional<Medico> medicoActualizado = medicoRepository.findById(medico.getId());
+			if(medicoActualizado.isPresent()) {
+				medicoActualizado.get().setNombre(medico.getNombre());
+				medicoActualizado.get().setCedula(medico.getCedula());
+				medicoActualizado.get().setIntensidadHoraria(medico.getIntensidadHoraria());
+				Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(medico.getCentroMedico());
+				medicoActualizado.get().setCentroMedico(centroMedico.get());
+				Optional<Especialidad> especialidad = especialidadRepository.findById(medico.getEspecialidad());
+				medicoActualizado.get().setEspecialidad(especialidad.get());
+				return medicoRepository.save(medicoActualizado.get());
+			}
+			return null;			
+		} catch (Exception e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
 	public Boolean deleteMedico(Long idMedico) {
-		Optional<Medico> medicoEliminar = medicoRepository.findById(idMedico);	
-		if(medicoEliminar.isPresent()) {
-			medicoRepository.deleteById(idMedico);
-			return true;
+		try {
+			Optional<Medico> medicoEliminar = medicoRepository.findById(idMedico);	
+			if(medicoEliminar.isPresent()) {
+				medicoRepository.deleteById(idMedico);
+				return true;
+			}
+			return false;			
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 
 	@Override

@@ -30,7 +30,12 @@ public class ServicioWebGestionTiposDeCita{
 	@PostMapping("/add")
 	public ResponseEntity<Object> createTipoCita(@RequestBody TipoCitaDTO tipoCita) {
 		TipoCita tipoCitaNuevo = service.createTipoCita(tipoCita);
-		return new ResponseEntity<Object>(tipoCitaNuevo, HttpStatus.CREATED);
+		if(tipoCitaNuevo == null) {
+			return new ResponseEntity<Object>(null, HttpStatus.ACCEPTED);			
+		}
+		else {			
+			return new ResponseEntity<Object>(tipoCitaNuevo, HttpStatus.CREATED);			
+		}
 	}
 	
 	//actualizar un tipo de cita

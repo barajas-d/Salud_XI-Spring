@@ -46,7 +46,6 @@ public class ServicioWebGestionCitas {
 	//crear una cita medica
 	@PostMapping("/add")
 	public ResponseEntity<Object> createCitaMedica(@RequestBody CitaMedicaDTO citaMedica){
-		System.out.println("P1: " + citaMedica.getTipoCita() + ", " + citaMedica.getUsuario() + ", " + citaMedica.getSintomatologia());
 		CitaMedica citaMedicaCreada = service.createCitaMedica(citaMedica);
 		return new ResponseEntity<Object>(citaMedicaCreada, HttpStatus.CREATED);
 	}

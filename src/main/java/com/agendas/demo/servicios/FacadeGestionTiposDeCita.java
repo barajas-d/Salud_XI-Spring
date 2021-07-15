@@ -20,33 +20,45 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	//Crear tipo de cita
 	@Override
 	public TipoCita createTipoCita(TipoCitaDTO tipoCita) {
-		TipoCita tipoCitaNuevo = new TipoCita(tipoCita.getNombre(), tipoCita.getDuracion());
-		return repository.save(tipoCitaNuevo);
+		try {
+			TipoCita tipoCitaNuevo = new TipoCita(tipoCita.getNombre(), tipoCita.getDuracion());
+			return repository.save(tipoCitaNuevo);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 
 	//Actualizar tipo de cita
 	@Override
 	public TipoCita updateTipoCita(TipoCitaDTO tipoCita) {
-		Optional<TipoCita> tipoCitaActualizado = repository.findById(tipoCita.getId());
-		if(tipoCitaActualizado.isPresent()){
-			tipoCitaActualizado.get().setNombre(tipoCita.getNombre());
-			tipoCitaActualizado.get().setDuracion(tipoCita.getDuracion());
-			return repository.save(tipoCitaActualizado.get());
-		}	
-		return null;		
+		try {
+			Optional<TipoCita> tipoCitaActualizado = repository.findById(tipoCita.getId());
+			if(tipoCitaActualizado.isPresent()){
+				tipoCitaActualizado.get().setNombre(tipoCita.getNombre());
+				tipoCitaActualizado.get().setDuracion(tipoCita.getDuracion());
+				return repository.save(tipoCitaActualizado.get());
+			}	
+			return null;					
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 
 	//Eliminar tipo de cita
 	@Override
 	public Boolean deleteTipoCita(Long idTipoDeCita) {
-		Optional<TipoCita> tipoCitaEliminar = repository.findById(idTipoDeCita);	
-		if(tipoCitaEliminar.isPresent()) {
-			repository.deleteById(idTipoDeCita);
-			return true;
+		try {			
+			Optional<TipoCita> tipoCitaEliminar = repository.findById(idTipoDeCita);	
+			if(tipoCitaEliminar.isPresent()) {
+				repository.deleteById(idTipoDeCita);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 
 
@@ -63,10 +75,7 @@ public class FacadeGestionTiposDeCita implements FacadeGestionTiposDeCitaInterfa
 	@Override
 	public TipoCita getTipoCita(Long idTipoCita) {
 		Optional<TipoCita> tipoCitaObtenido = repository.findById(idTipoCita);
-		//if(tipoCitaObtenido .isPresent()) {
-			return tipoCitaObtenido.get();
-		//}	
-		//return null;
+		return tipoCitaObtenido.get();
 	}
 
 	//obtener todos los tipos de cita

@@ -45,13 +45,18 @@ public class ServicioWebCentrosMedicos {
 	@PostMapping("/add")
 	public ResponseEntity<Object> createCentroMedico(@RequestBody CentroMedicoDTO centroMedicoDto){
 		Boolean centroMedicoCreado = service.createCentroMedico(centroMedicoDto);
-		return new ResponseEntity<Object>(centroMedicoCreado, HttpStatus.CREATED);
+		if(centroMedicoCreado == null) {
+			return new ResponseEntity<Object>(null, HttpStatus.ACCEPTED);
+		}
+		else {
+			return new ResponseEntity<Object>(centroMedicoCreado, HttpStatus.CREATED);
+		}
 	}
 	
 	//Actualizar centro medico
 	@PutMapping("/update")
 	public ResponseEntity<Object> updateUsuario(@RequestBody CentroMedicoDTO centroMedicoDto){
-		Boolean usuarioActualizado = service.updateCentroMedico(centroMedicoDto);
+		Boolean usuarioActualizado = service.updateCentroMedico(centroMedicoDto);		
 		return new ResponseEntity<Object>(usuarioActualizado, HttpStatus.CREATED);
 	}
 	
@@ -59,12 +64,7 @@ public class ServicioWebCentrosMedicos {
 	@DeleteMapping("/delete/{idCentroMedico}")
 	public ResponseEntity<Object> deleteUsuario(@PathVariable Long idCentroMedico){
 		Boolean result = service.deleteCentroMedico(idCentroMedico);
-		if(result) {
-			return new ResponseEntity<Object>(result, HttpStatus.ACCEPTED);
-		}
-		else {
-			return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
-		}
+		return new ResponseEntity<Object>(result, HttpStatus.ACCEPTED);
 	}
 	
 	//Obtener centros medicos con paginación
@@ -85,7 +85,12 @@ public class ServicioWebCentrosMedicos {
 	@PostMapping("/ubicacion/add")
 	public ResponseEntity<Object> createUbicacionCentroMedico(@RequestBody CentroMedicoPorUbicacionDTO ubicacionCentroMedico){
 		CentroMedicoPorUbicacion ubicacionCentroMedicoNuevo = service.createUbicacionCentroMedico(ubicacionCentroMedico);
-		return new ResponseEntity<Object>(ubicacionCentroMedicoNuevo, HttpStatus.ACCEPTED);
+		if(ubicacionCentroMedicoNuevo == null) {
+			return new ResponseEntity<Object>(null, HttpStatus.ACCEPTED);
+		}
+		else {			
+			return new ResponseEntity<Object>(ubicacionCentroMedicoNuevo, HttpStatus.ACCEPTED);
+		}
 	}
 	
 	//Eliminar una ubicacion a un centro medico

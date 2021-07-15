@@ -42,22 +42,29 @@ public class FacadeGestionCitasMedicas implements FacadeGestionCitasMedicasInter
 	
 	@Override
 	public CitaMedica createCitaMedica(CitaMedicaDTO citaMedica){
-		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(citaMedica.getTipoCita());	
-		Usuario usuario = usuarioRepository.findByCedula(citaMedica.getUsuario());
-		Optional<Sintomatologia> sintomatologia = sintomatologiaRepository.findById(citaMedica.getSintomatologia());
-		
-		CitaMedica nuevaCitaMedica = new CitaMedica(tipoCita.get(), usuario, sintomatologia.get());
-		return citaMedicaRepository.save(nuevaCitaMedica);
+		try {
+			Optional<TipoCita> tipoCita = tipoCitaRepository.findById(citaMedica.getTipoCita());	
+			Usuario usuario = usuarioRepository.findByCedula(citaMedica.getUsuario());
+			Optional<Sintomatologia> sintomatologia = sintomatologiaRepository.findById(citaMedica.getSintomatologia());			
+			CitaMedica nuevaCitaMedica = new CitaMedica(tipoCita.get(), usuario, sintomatologia.get());
+			return citaMedicaRepository.save(nuevaCitaMedica);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@Override
-	public Boolean deleteCitaMedica(Long idCitaMedica) {	
-		Optional<CitaMedica> citaMedicaEliminar = citaMedicaRepository.findById(idCitaMedica);		
-		if(citaMedicaEliminar.isPresent()) {
-			citaMedicaRepository.deleteById(idCitaMedica);
-			return true;
+	public Boolean deleteCitaMedica(Long idCitaMedica) {
+		try {
+			Optional<CitaMedica> citaMedicaEliminar = citaMedicaRepository.findById(idCitaMedica);		
+			if(citaMedicaEliminar.isPresent()) {
+				citaMedicaRepository.deleteById(idCitaMedica);
+				return true;
+			}
+			return false;			
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 	
 	@Override

@@ -34,25 +34,29 @@ public class FacadeGestionCuotaModeradora implements FacadeGestionCuotaModerador
 
 	@Override
 	public CuotaModeradora createCuotaModeradora(CuotaModeradoraDTO cuotaModeradora) {
-		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(cuotaModeradora.getTipoCita());
-		Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(cuotaModeradora.getTipoContrato());
-
-		CuotaModeradora cuotaModeradoraNueva = new CuotaModeradora(cuotaModeradora.getValor(), tipoCita.get(), tipoContrato.get());
-		
-		return cuotaModeradoraRepository.save(cuotaModeradoraNueva);
+		try {
+			Optional<TipoCita> tipoCita = tipoCitaRepository.findById(cuotaModeradora.getTipoCita());
+			Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(cuotaModeradora.getTipoContrato());
+			CuotaModeradora cuotaModeradoraNueva = new CuotaModeradora(cuotaModeradora.getValor(), tipoCita.get(), tipoContrato.get());	
+			return cuotaModeradoraRepository.save(cuotaModeradoraNueva);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	
 	@Override
 	public Boolean deleteCuotaModeradora(Long idCuotaModeradora) {
-		
-		Optional<CuotaModeradora> cuotaModeradoraEliminar = cuotaModeradoraRepository.findById(idCuotaModeradora);
-		
-		if(cuotaModeradoraEliminar.isPresent()) {
-			cuotaModeradoraRepository.deleteById(idCuotaModeradora);
-			return true;
+		try {
+			Optional<CuotaModeradora> cuotaModeradoraEliminar = cuotaModeradoraRepository.findById(idCuotaModeradora);
+			if(cuotaModeradoraEliminar.isPresent()) {
+				cuotaModeradoraRepository.deleteById(idCuotaModeradora);
+				return true;
+			}
+			return false;			
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 
 

@@ -44,19 +44,31 @@ public class FacadeGestionCentroMedico implements FacadeGestionCentrosMedicosInt
 
 	@Override
 	public Boolean createCentroMedico(CentroMedicoDTO centroMedico) {
-		CentroMedicoDAO nuevoCentroMedico = new CentroMedicoDAO(centroMedico.getNombre());
-		return centroMedicoRepositoryJDBC.create(nuevoCentroMedico);
+		try {
+			CentroMedicoDAO nuevoCentroMedico = new CentroMedicoDAO(centroMedico.getNombre());
+			return centroMedicoRepositoryJDBC.create(nuevoCentroMedico);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean deleteCentroMedico(Long idCentroMedico) {
-		return centroMedicoRepositoryJDBC.delete(idCentroMedico);
+		try {
+			return centroMedicoRepositoryJDBC.delete(idCentroMedico);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean updateCentroMedico(CentroMedicoDTO centroMedico) {
-		CentroMedicoDAO centroMedicoActualizado = new CentroMedicoDAO(centroMedico.getId(), centroMedico.getNombre());
-		return centroMedicoRepositoryJDBC.update(centroMedicoActualizado);
+		try {
+			CentroMedicoDAO centroMedicoActualizado = new CentroMedicoDAO(centroMedico.getId(), centroMedico.getNombre());
+			return centroMedicoRepositoryJDBC.update(centroMedicoActualizado);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -79,11 +91,14 @@ public class FacadeGestionCentroMedico implements FacadeGestionCentrosMedicosInt
 
 	@Override
 	public CentroMedicoPorUbicacion createUbicacionCentroMedico(CentroMedicoPorUbicacionDTO ubicacionCentroMedico) {
-		Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(ubicacionCentroMedico.getCentroMedico());
-		Optional<Ubicacion> ubicacion = ubicacionRepository.findById(ubicacionCentroMedico.getUbicacion());
-		
-		CentroMedicoPorUbicacion nuevoCentroMedicoUbicacion = new CentroMedicoPorUbicacion(centroMedico.get(), ubicacion.get());
-		return ubicacionCentroMedicoRepository.save(nuevoCentroMedicoUbicacion);
+		try {
+			Optional<CentroMedico> centroMedico = centroMedicoRepository.findById(ubicacionCentroMedico.getCentroMedico());
+			Optional<Ubicacion> ubicacion = ubicacionRepository.findById(ubicacionCentroMedico.getUbicacion());
+			CentroMedicoPorUbicacion nuevoCentroMedicoUbicacion = new CentroMedicoPorUbicacion(centroMedico.get(), ubicacion.get());
+			return ubicacionCentroMedicoRepository.save(nuevoCentroMedicoUbicacion);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

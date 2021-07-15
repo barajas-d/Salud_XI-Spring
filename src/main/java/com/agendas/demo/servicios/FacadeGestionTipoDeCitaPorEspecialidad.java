@@ -28,23 +28,28 @@ public class FacadeGestionTipoDeCitaPorEspecialidad implements FacadeGestionTipo
 	
 	@Override
 	public TiposCitasAtendidasPorEspecialidad createTipoDeCitaPorEspecialidad(TiposCitaPorEspecialidadDto tipoCitaPorEspecialidad) {
-		Optional<TipoCita> tipoCita = tipoCitaRepository.findById(tipoCitaPorEspecialidad.getTipoCita());
-		Optional<Especialidad> especialidad = especialidadRepository.findById(tipoCitaPorEspecialidad.getEspecialidad());
-
-		TiposCitasAtendidasPorEspecialidad tipoCitaPorEspecialidadNueva = new TiposCitasAtendidasPorEspecialidad(especialidad.get(), tipoCita.get());
-		
-		return tipoCitaPorEspecialidadRepository.save(tipoCitaPorEspecialidadNueva);
+		try {
+			Optional<TipoCita> tipoCita = tipoCitaRepository.findById(tipoCitaPorEspecialidad.getTipoCita());
+			Optional<Especialidad> especialidad = especialidadRepository.findById(tipoCitaPorEspecialidad.getEspecialidad());
+			TiposCitasAtendidasPorEspecialidad tipoCitaPorEspecialidadNueva = new TiposCitasAtendidasPorEspecialidad(especialidad.get(), tipoCita.get());
+			return tipoCitaPorEspecialidadRepository.save(tipoCitaPorEspecialidadNueva);			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean deleteTipoDeCitaPorEspecialidad(Long idTipoCitaPorEspecialidad) {
-		Optional<TiposCitasAtendidasPorEspecialidad> tipoCitaPorEspecialidadEliminar = tipoCitaPorEspecialidadRepository.findById(idTipoCitaPorEspecialidad);
-		
-		if(tipoCitaPorEspecialidadEliminar.isPresent()) {
-			tipoCitaPorEspecialidadRepository.deleteById(idTipoCitaPorEspecialidad);
-			return true;
+		try {
+			Optional<TiposCitasAtendidasPorEspecialidad> tipoCitaPorEspecialidadEliminar = tipoCitaPorEspecialidadRepository.findById(idTipoCitaPorEspecialidad);
+			if(tipoCitaPorEspecialidadEliminar.isPresent()) {
+				tipoCitaPorEspecialidadRepository.deleteById(idTipoCitaPorEspecialidad);
+				return true;
+			}
+			return false;			
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 
 	@Override

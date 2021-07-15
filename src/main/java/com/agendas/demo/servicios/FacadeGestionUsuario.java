@@ -28,37 +28,48 @@ public class FacadeGestionUsuario implements FacadeGestionUsuarioInterface{
 	
 	@Override
 	public Usuario createUsuario(UsuarioDTO usuario) {
-		Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(usuario.getTipoContrato());
-		Optional<Ubicacion> ubicacion = ubicacionRepository.findById(usuario.getUbicacion());
-		
-		Usuario nuevoUsuario = new Usuario(usuario.getNombre(), usuario.getCedula(), usuario.getCorreo(), tipoContrato.get(), ubicacion.get());
-		return usuarioRepository.save(nuevoUsuario);
+		try {
+			Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(usuario.getTipoContrato());
+			Optional<Ubicacion> ubicacion = ubicacionRepository.findById(usuario.getUbicacion());
+			Usuario nuevoUsuario = new Usuario(usuario.getNombre(), usuario.getCedula(), usuario.getCorreo(), tipoContrato.get(), ubicacion.get());
+			return usuarioRepository.save(nuevoUsuario);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Usuario updateUsuario(UsuarioDTO usuario) {
-		Optional<Usuario> usuarioActualizado = usuarioRepository.findById(usuario.getId());
-		if(usuarioActualizado.isPresent()) {
-			usuarioActualizado.get().setNombre(usuario.getNombre());
-			usuarioActualizado.get().setCedula(usuario.getCedula());
-			usuarioActualizado.get().setCorreo(usuario.getCorreo());
-			Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(usuario.getTipoContrato());
-			usuarioActualizado.get().setTipoContrato(tipoContrato.get());
-			Optional<Ubicacion> ubicacion = ubicacionRepository.findById(usuario.getUbicacion());
-			usuarioActualizado.get().setUbicacion(ubicacion.get());
-			return usuarioRepository.save(usuarioActualizado.get());
+		try {			
+			Optional<Usuario> usuarioActualizado = usuarioRepository.findById(usuario.getId());
+			if(usuarioActualizado.isPresent()) {
+				usuarioActualizado.get().setNombre(usuario.getNombre());
+				usuarioActualizado.get().setCedula(usuario.getCedula());
+				usuarioActualizado.get().setCorreo(usuario.getCorreo());
+				Optional<TipoContrato> tipoContrato = tipoContratoRepository.findById(usuario.getTipoContrato());
+				usuarioActualizado.get().setTipoContrato(tipoContrato.get());
+				Optional<Ubicacion> ubicacion = ubicacionRepository.findById(usuario.getUbicacion());
+				usuarioActualizado.get().setUbicacion(ubicacion.get());
+				return usuarioRepository.save(usuarioActualizado.get());
+			}
+			return null;
+		} catch (Exception e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
 	public Boolean deleteusuario(Long idUsuario) {
-		Optional<Usuario> usuarioEliminar = usuarioRepository.findById(idUsuario);	
-		if(usuarioEliminar.isPresent()) {
-			usuarioRepository.deleteById(idUsuario);
-			return true;
+		try {
+			Optional<Usuario> usuarioEliminar = usuarioRepository.findById(idUsuario);	
+			if(usuarioEliminar.isPresent()) {
+				usuarioRepository.deleteById(idUsuario);
+				return true;
+			}
+			return false;			
+		} catch (Exception e) {
+			return null;
 		}
-		return false;
 	}
 
 	@Override
